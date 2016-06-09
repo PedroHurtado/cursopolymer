@@ -3,8 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <script src="../../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script>
+        /* this script must run before Polymer is imported */
+        window.Polymer = {
+            dom: 'shadow',
+            lazyRegister: true
+        };
+    </script>
+    <link rel="import" href="repeat/template-repeat.html">
+    <link rel="import" href="../../../bower_components/iron-ajax/iron-ajax.html">
 </head>
 <body>
-    
-</body>
+    <template-repeat></template-repeat>
+    <template id="t" is="dom-bind">
+
+        <iron-ajax url="person.json" last-response="{{person}}" auto></iron-ajax>
+
+        <template is="dom-repeat" items="{{person}}">
+            <div><span>{{item.name}}</span> <span>{{item.lastname}}</span></div>
+        </template>
+
+  </template>
+  <script>
+  var t = document.querySelector('#t');
+
+  // The dom-change event signifies when the template has stamped its DOM.
+  t.addEventListener('dom-change', function() {
+    // auto-binding template is ready.
+  });
+</script>
 </html>

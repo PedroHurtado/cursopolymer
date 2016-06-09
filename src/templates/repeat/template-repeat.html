@@ -1,0 +1,41 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="template-repeat">
+    <template>
+        <h2>Hello</h2>
+        <template is="dom-repeat" items="{{person}}" as="person">
+            <div>
+                <span>{{person.name}}</span>
+                <span>{{person.surname}}</span>
+                <template is="dom-if" if="{{index}}">
+                    <span>{{index}}</span>
+                </template>
+                
+            </div>
+
+        </template>
+    </template>
+    <script>
+             Polymer({
+                is:"template-repeat",
+                properties:{
+                    person:{
+                        type:Array,
+                        value :function(){
+                            return [
+                                {name:"Pedro",surmane:"Hurtado"},
+                                {name:"Rodrigo", surname:"Hurtado"}
+                            ];
+                        }
+                    }
+                    
+                },
+                ready:function(){
+                    /*this.person = [
+                        {name:"Pedro",surmane:"Hurtado"},
+                        {name:"Rodrigo", surname:"Hurtado"}
+                    ];*/                      
+                }
+            });
+        </script>
+
+</dom-module>
